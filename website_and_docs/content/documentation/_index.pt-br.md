@@ -6,15 +6,6 @@ cascade:
 aliases: ["/documentation/pt-br/"]
 ---
 
-{{% pageinfo color="warning" %}}
-<p class="lead">
-   <i class="fas fa-language display-4"></i> 
-   Page being translated from 
-   English to Portuguese. Do you speak Portuguese? Help us to translate
-   it by sending us pull requests!
-</p>
-{{% /pageinfo %}}
-
 Selenium é um projeto que abrange uma variedade de ferramentas e bibliotecas
 que permitem e suportam a automação de navegadores da web.
 
@@ -45,39 +36,17 @@ navegadores. Aqui está uma das instruções mais simples que você pode fazer:
 {{< tab header="Python" disableCodeBlock=true >}}
     {{< gh-codeblock path="/examples/python/tests/hello/test_hello_selenium.py" >}}
 {{< /tab >}}
-{{< tab header="CSharp" >}}
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-
-class HelloSelenium {
-    static void Main() {
-        var driver = new ChromeDriver();
-
-        driver.Navigate().GoToUrl("https://selenium.dev");
-
-        driver.Quit();
-    }
-}
+{{< tab header="CSharp" disableCodeBlock=true >}}
+    {{< gh-codeblock path="/examples/dotnet/SeleniumDocs/Hello/HelloSelenium.cs" >}}
 {{< /tab >}}
-{{< tab header="Ruby" >}}
-require 'selenium-webdriver'
-
-driver = Selenium::WebDriver.for :chrome
-
-driver.get 'https://selenium.dev'
-
-driver.quit
+{{< tab header="Ruby" disableCodeBlock=true >}}
+    {{< gh-codeblock path="/examples/ruby/spec/hello/hello_selenium_spec.rb" >}}
 {{< /tab >}}
-{{< tab header="JavaScript" >}}
-const {Builder, By, Key, until} = require('selenium-webdriver');
-
-(async function helloSelenium() {
-    let driver = await new Builder().forBrowser('chrome').build();
-
-    await driver.get('https://selenium.dev');
-
-    await driver.quit();
-})();
+{{< tab header="JavaScript" disableCodeBlock=true >}}
+    {{< gh-codeblock path="/examples/javascript/hello/helloSelenium.js" >}}
+{{< /tab >}}
+{{< tab header="Kotlin" disableCodeBlock=true >}}
+    {{< gh-codeblock path="/examples/kotlin/src/test/kotlin/dev/selenium/hello/HelloSelenium.kt" >}}
 {{< /tab >}}
 {{< tab header="Kotlin" >}}
 import org.openqa.selenium.By

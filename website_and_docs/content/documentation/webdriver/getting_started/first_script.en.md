@@ -210,7 +210,7 @@ Notice that we need to relocate the search box because the DOM has changed since
     {{< /tab >}}
 {{< /tabpane >}}
 
-### 7. End the session 
+### 8. End the session 
 
 This ends the driver process, which by default closes the browser as well. 
 No more commands can be sent to this driver instance. 
@@ -343,29 +343,9 @@ driver.find_element(name: 'q').attribute('value') # => "Selenium"
 
 driver.quit
 {{< /tab >}}
-{{< tab header="JavaScript" github="SeleniumHQ/seleniumhq.github.io/blob/dev/examples/javascript/documentation/webdriver/getting_started/firstScript.js" >}}
-const {Builder, By, Key, until} = require('selenium-webdriver');
-
-(async function helloSelenium() {
-    let driver = await new Builder().forBrowser('chrome').build();
-
-    await driver.get('https://www.google.com');
-
-    await driver.getTitle(); // => "Google"
-
-    driver.manage().setTimeouts({implicit: 0.5 })
-
-    let searchBox = await driver.findElement(By.name('q'));
-    let searchButton = await driver.findElement(By.name('btnK'));
-
-    await searchBox.sendKeys('Selenium');
-    await searchButton.click();
-
-    await driver.findElement(By.name('q')).getAttribute("value"); // => 'Selenium'
-
-    await driver.quit();
-})();
-{{< /tab >}}
+  {{< tab header="JavaScript" disableCodeBlock=true >}}
+    {{< gh-codeblock path="/examples/javascript/getting_started/firstScript.js">}}
+  {{< /tab >}}
 {{< tab header="Kotlin" >}}
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver

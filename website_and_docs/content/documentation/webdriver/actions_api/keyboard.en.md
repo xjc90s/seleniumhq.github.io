@@ -93,26 +93,8 @@ ensure
   driver.quit
 end
   {{< /tab >}}
-  {{< tab header="JavaScript" >}}
-const {Builder, By, Key} = require('selenium-webdriver');
-
-(async function example() {
-  let driver = await new Builder().forBrowser('chrome').build();
-
-  try {
-    // Navigate to Url
-    await driver.get('https://www.google.com');
-
-    // Enter text "webdriver" and perform keyboard action "Enter"
-    await driver.findElement(By.name('q')).sendKeys('webdriver', Key.ENTER);
-
-    // Perform action ctrl + A (modifier CONTROL + Alphabet A) to select the page
-    await driver.actions().keyDown(Key.CONTROL).sendKeys('a').perform();
-  }
-  finally {
-    await driver.quit();
-  }
-})();
+  {{< tab header="JavaScript" disableCodeBlock=true >}}
+    {{< gh-codeblock path="/examples/javascript/actionsApi/keyboard/keyDown.js">}}
   {{< /tab >}}
   {{< tab header="Kotlin" >}}
 import org.openqa.selenium.By
@@ -238,24 +220,8 @@ ensure
   driver.quit
 end
   {{< /tab >}}
-  {{< tab header="JavaScript" >}}
-const {Builder, By, Key} = require('selenium-webdriver');
-(async function example() {
-  let driver = await new Builder().forBrowser('firefox').build();
-  try {
-    // Navigate to Url
-    await driver.get('https://www.google.com');
-
-    // Store google search box WebElement
-    let search = driver.findElement(By.name('q'));
-
-    // Enters text "qwerty" with keyDown SHIFT key and after keyUp SHIFT key (QWERTYqwerty)
-    await driver.actions().click(search).keyDown(Key.SHIFT).sendKeys("qwerty").keyUp(Key.SHIFT).sendKeys("qwerty").perform();
-  }
-  finally {
-    await driver.quit();
-  }
-})();
+  {{< tab header="JavaScript" disableCodeBlock=true >}}
+    {{< gh-codeblock path="/examples/javascript/actionsApi/keyboard/keyUp.js">}}
   {{< /tab >}}
   {{< tab header="Kotlin" >}}
 import org.openqa.selenium.By
@@ -287,4 +253,68 @@ fun main() {
 This is a convenience method in the Actions API that combines keyDown and keyUp commands in one action.
 Executing this command differs slightly from using the element method.
 
-{{< alert-code />}}
+{{< tabpane langEqualsHeader=true >}}
+{{< tab header="Java" >}}
+WebDriver driver = new FirefoxDriver();
+try {
+
+// Navigate to the url
+driver.get("https://google.com");
+
+// Create an object of Action class
+Actions action = new Actions(driver);
+
+// Find google search box element
+WebElement search = driver.findElement(By.name("q"));
+
+// Send value by action class to the search box
+action.sendKeys(search, "Selenium").perform();
+
+// Perform Keyboard action by Action class
+action.sendKeys(Keys.ENTER).perform();
+
+} finally {
+driver.quit();
+}
+
+{{< /tab >}}
+{{< tab header="Python" >}}
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+driver.get("https://www.selenium.dev/selenium/docs/api/py/genindex.html")
+
+search = driver.find_element(By.NAME, "q")
+
+action = webdriver.ActionChains(driver)
+action.move_to_element(search).click().send_keys("send_keys", Keys.ENTER).perform()
+
+{{< /tab >}}
+{{< tab header="CSharp" >}}
+
+# Help us with a PR for code sample
+
+{{< /tab >}}
+{{< tab header="Ruby" >}}
+
+# Help us with a PR for code sample
+
+{{< /tab >}}
+  {{< tab header="JavaScript" disableCodeBlock=true >}}
+    {{< gh-codeblock path="/examples/javascript/actionsApi/keyboard/sendKeysAction.js">}}
+  {{< /tab >}}
+{{< tab header="Kotlin" >}}
+
+# Help us with a PR for code sample
+
+{{< /tab >}}
+{{< /tabpane >}}
+
+{{< alert-code >}}
+for sendKeys by Action
+{{< /alert-code >}}
